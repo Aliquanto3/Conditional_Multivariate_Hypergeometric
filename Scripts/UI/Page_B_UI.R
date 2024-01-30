@@ -7,10 +7,6 @@ Page_B_SidebarPanel = sidebarPanel(
   bsPopover(id = "n.B", title = "n", 
             content = "n doit être inférieur ou égal à N",
             placement = "top", trigger = "hover"),
-  numericInput("M.B", "Nombre de mulligans M", 3),
-  bsPopover(id = "M.B", title = "n", 
-            content = "M doit être inférieur ou égal à n",
-            placement = "top", trigger = "hover"),
   
   fluidRow(
     column(6, 
@@ -87,7 +83,12 @@ Page_B_SidebarPanel = sidebarPanel(
   width = 4)
 
 Page_B_MainPanel = 
-  mainPanel(htmlOutput("labelResultat.B"),
-            tags$head(tags$style(HTML("#labelResultat.B {font-size: 16px;}"))), 
-            width = 8
+  mainPanel(
+    lapply(1:nbMulligansB, function(i) {
+      tagList(
+        htmlOutput(paste("labelResultat.B", i, sep = "_")),
+        tableOutput(paste("tableResultat.B", i, sep = "_"))
+      )
+    }),
+    width = 8
   )

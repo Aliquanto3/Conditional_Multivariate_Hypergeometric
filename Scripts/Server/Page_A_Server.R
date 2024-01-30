@@ -1,4 +1,5 @@
 Page_A_CatchParameterErrors = function(input){
+  print("Start Page_A_CatchParameterErrors()")
   
   messageErreur.A = ""
   
@@ -9,67 +10,79 @@ Page_A_CatchParameterErrors = function(input){
   }
   if (input$K1.A + input$K2.A + input$K3.A  + input$K4.A  > input$N.A) {
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le total de cartes de chaque catégorie est 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le total de cartes de chaque catégorie est 
             supérieur au nombre de cartes du deck N.", sep = "<br>")
   }
   if(input$k1Min.A + input$k2Min.A + input$k3Min.A + input$k4Min.A > input$n.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre total de cartes à piocher est 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre total de cartes à piocher est 
             supérieur au nombre total de cartes à piocher n.", sep = "<br>")
   }
   if(input$k1Min.A > input$k1Max.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre minimum de cartes X1 à piocher 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre minimum de cartes X1 à piocher 
             (k1Min) est supérieur au nombre maximum de cartes X1 à piocher 
             (k1Max).", sep = "<br>")
   }
   if(input$k2Min.A > input$k2Max.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre minimum de cartes X2 à piocher 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre minimum de cartes X2 à piocher 
             (k2Min) est supérieur au nombre maximum de cartes X2 à piocher 
             (k2Max).", sep = "<br>")
   }
   if(input$k3Min.A > input$k3Max.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre minimum de cartes X3 à piocher 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre minimum de cartes X3 à piocher 
             (k3Min) est supérieur au nombre maximum de cartes X3 à piocher 
             (k3Max).", sep = "<br>")
   }
   if(input$k4Min.A > input$k4Max.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre minimum de cartes X4 à piocher 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre minimum de cartes X4 à piocher 
             (k4Min) est supérieur au nombre maximum de cartes X4 à piocher 
             (k4Max).", sep = "<br>")
   }
   if(input$k1Max.A > input$K1.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre maximum de cartes X1 à piocher 
-            (k1Max) est supérieur au nombre de cartes X1 à piocher (K1).", 
+      paste(messageErreur.A,
+      "<b>Erreur</b> : Le nombre maximum de cartes X1 à piocher 
+            (k1Max) est supérieur au nombre de cartes X1 à dans le deck (K1).", 
             sep = "<br>")
   }
   if(input$k2Max.A > input$K2.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre maximum de cartes X2 à piocher 
-            (k2Max) est supérieur au nombre de cartes X2 à piocher (K2).", 
+      paste(messageErreur.A,
+      "<b>Erreur</b> : Le nombre maximum de cartes X2 à piocher 
+            (k2Max) est supérieur au nombre de cartes X2 dans le deck (K2).", 
             sep = "<br>")
   }
   if(input$k3Max.A > input$K3.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre maximum de cartes X3 à piocher 
-            (k3Max) est supérieur au nombre de cartes X3 à piocher (K3).", 
+      paste(messageErreur.A,
+      "<b>Erreur</b> : Le nombre maximum de cartes X3 à piocher 
+            (k3Max) est supérieur au nombre de cartes X3 dans le deck (K3).", 
             sep = "<br>")
   }
   if(input$k4Max.A > input$K4.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre maximum de cartes X4 à piocher 
-            (k4Max) est supérieur au nombre de cartes X4 à piocher (K4).", 
+      paste(messageErreur.A,"
+      <b>Erreur</b> : Le nombre maximum de cartes X4 à piocher 
+            (k4Max) est supérieur au nombre de cartes X4 dans le deck (K4).", 
             sep = "<br>")
   }
+  print("End Page_A_CatchParameterErrors()")
   return(messageErreur.A)
 }
 
-Page_A_OutputLabels = function(input){
+Page_A_Output = function(input){
   
+  print("Start Page_A_Output()")
   # Calcul de la probabilité totale
   prob = multivariateHypergeometricComputation4params(
     input$N.A, 
@@ -140,5 +153,6 @@ Page_A_OutputLabels = function(input){
     texteLabel = paste(texteLabel, newRow)
   }
   
+  print("End Page_A_Output()")
   return(texteLabel)
 }

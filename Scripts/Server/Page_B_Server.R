@@ -1,4 +1,5 @@
 Page_B_CatchParameterErrors = function(input){
+  print("Start Page_B_CatchParameterErrors()")
   messageErreur.B = c()
   if(input$n.B > input$N.B){
     messageErreur.B <- 
@@ -7,10 +8,6 @@ Page_B_CatchParameterErrors = function(input){
   if(input$k1Min.B + input$k2Min.B > input$n.B){
     messageErreur.B <- 
       c(messageErreur.B, "Le nombre minimal de cartes à piocher (K1Min + K2Min) est supérieur au nombre total de cartes à piocher n.")
-  }
-  if(input$M.B > input$n.B){
-    messageErreur.B <- 
-      c(messageErreur.B, "Le nombre de mulligans M est supérieur au nombre total de cartes à piocher n.")
   }
   if(input$K1Max.B > input$N.B){
     messageErreur.B <- 
@@ -36,13 +33,15 @@ Page_B_CatchParameterErrors = function(input){
     messageErreur.B <- 
       c(messageErreur.B, "Le nombre maximum de cartes X2 à piocher (k2Max) est supérieur au nombre minimal de cartes X2 dans le deck (K2Min).")
   }
+  print("End Page_B_CatchParameterErrors()")
   return(messageErreur.B)
 }
 
-Page_B_OutputLabels = function(input){
+Page_B_Output = function(input){
+  print("Start Page_B_Output()")
   
   # input =
-  #   list(N.B = 99, n.B = 7, M.B = 3, k1Min.B = 1, k1Max.B = 7, k2Min.B = 3,
+  #   list(N.B = 99, n.B = 7, k1Min.B = 1, k1Max.B = 7, k2Min.B = 3,
   #        k2Max.B = 5, K1Min.B = 18, K1Max.B = 22, K2Min.B = 35, K2Max.B = 42)
   
   # Get the list of K1s and K2s to iterate over
@@ -69,18 +68,31 @@ Page_B_OutputLabels = function(input){
   }
   
   # Add conditional probability based on number of mulligans
-  if(input$M.B > 1){
-    for (mull in 2:input$M.B){
-      results.B[] <- lapply(results.B, function(x) {
-        x + (1 - x) * x
-      })
-    }
+  mulliganResults.B = list(results.B)
+  probsAfterMull = results.B
+  for (mull in 2:4){
+    probsAfterMull[] = lapply(mulliganResults.B[[mull-1]], function(x) {
+      x + (1 - x) * x
+    })
+    mulliganResults.B = append(mulliganResults.B, list(probsAfterMull))
   }
   
   # Update the export format
-  results.B[] <- lapply(results.B, function(x){
-    paste0(round(x * 100, digits = 2),"%")
-  } )
+  for (mull in 1:4){
+    mulliganResults.B[[mull]][] = lapply(mulliganResults.B[[mull]], function(x){
+      paste0(round(x * 100, digits = 2),"%")
+    } )
+  }
   
-  return(results.B)
+  # Affichage des résultats du mulligan
+  mulliganLabels.B = 
+    list(paste0("Table de probabilité allant jusqu'au 1er mulligan :<br>"))
+  for (mull in 2:nbMulligansB){
+    mulliganLabels.B = append(mulliganLabels.B, 
+                            paste0("<br>Table de probabilité allant jusqu'au ",
+                                   mull,"e mulligan :<br>"))
+  }
+  
+  print("End Page_B_Output()")
+  return(list(LabelB = mulliganLabels.B, TableB = mulliganResults.B))
 }

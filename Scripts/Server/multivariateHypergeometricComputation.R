@@ -43,3 +43,15 @@ multivariateHypergeometricComputation2params = function(N,n,Ks,mins,maxs){
   }
   return(prob)
 }
+
+multivariateHypergeometricComputation1param = function(N,n,K,min,max){
+  prob = 0
+  # Boucle pour sommer les probabilités
+  for (x1 in min:max) {
+    if (x1 <= n) {
+      prob = prob +
+        ( choose(K, x1) * choose(N - K, n - x1)) / choose(N, n)
+    }
+  }
+  return(prob)
+}
