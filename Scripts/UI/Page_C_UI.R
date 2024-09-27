@@ -1,48 +1,47 @@
 Page_C_SidebarPanel = sidebarPanel(
-  numericInput("N.C", "Nombre total de cartes dans le deck N", 99),
+  numericInput("N.C", "Total number of cards in the deck N", 60),
   bsPopover(id = "N.C", title = "N", 
-            content = "N doit être la valeur la plus élevée",
+            content = "N must be the highest value",
             placement = "top", trigger = "hover"),
-  numericInput("n.C", "Nombre de cartes piochées n", 7),
+  numericInput("n.C", "Number of cards drawn n", 7),
   bsPopover(id = "n.C", title = "n", 
-            content = "n doit être inférieur ou égal à N",
+            content = "n must be less than or equal to N",
             placement = "top", trigger = "hover"),
-  textInput("labelX1.C", "Catégorie de carte X1", "X1"),
-  bsPopover(id = "labelX1.C", title = "Label de X1", 
-            content = "Pour visualisation du nom de la catégorie X1",
+  textInput("labelX1.C", "Card category X1", "X1"),
+  bsPopover(id = "labelX1.C", title = "Label of X1", 
+            content = "For visualization of the name of the category X1",
             placement = "top", trigger = "hover"),
-  numericInput("K1Min.C", "Nb minimum de X1 dans le deck (K1Min)", 35),
+  numericInput("K1Min.C", "Min. number of X1 in the deck (K1Min)", 18),
   bsPopover(id = "K1Min.C", title = "K1Min", 
-            content = "K1Min, le nombre de cartes X1 minimal à tester, doit être inférieur ou égal à N.
-                         K1Min doit être supérieur ou égal à k1Min et k1Max.
-                         K1Min doit être inférieur ou égal à K1Max.
-                         K1Min doit être inférieur ou égale à N.",
+            content = "K1Min, the minimum number of X1 cards to test, must be less than or equal to N.
+                         K1Min must be greater than or equal to k1Min and k1Max.
+                         K1Min must be less than or equal to K1Max.
+                         K1Min must be less than or equal to N.",
             placement = "top", trigger = "hover"),
-  numericInput("K1Max.C", "Nb maximum de X1 dans le deck (K1Max)", 45),
+  numericInput("K1Max.C", "Max. number of X1 in the deck (K1Max)", 28),
   bsPopover(id = "K1Max.C", title = "K1Max", 
-            content = "K1Max, le nombre de cartes X1 maximal à tester, doit être inférieur ou égal à N.
-                         K1Max doit être supérieur ou égal à k1Min et k1Max.
-                         K1Min doit être supérieur ou égal à K1Min.
-                         K1Max doit être inférieur ou égale à N.",
+            content = "K1Max, the maximum number of X1 cards to test, must be less than or equal to N.
+                         K1Max must be greater than or equal to k1Min and k1Max.
+                         K1Min must be greater than or equal to K1Min.
+                         K1Max must be less than or equal to N.",
             placement = "top", trigger = "hover"),
-  numericInput("k1Min.C", "Nb min. pioché de X1 (k1Min)", 3),
+  numericInput("k1Min.C", "Min. number of X1 drawn (k1Min)", 2),
   bsPopover(id = "k1Min.C", title = "k1Min", 
-            content = "k1Min, le nombre minimum voulu de cartes X1 piochées, doit être inférieur ou égal à n.
-                         Fixer k1Min à 0 si vous ne souhaitez pas fixer de minimum.
-                         k1Min doit être inférieur ou égal à K1Min, K1Max et k1Max.",
+            content = "k1Min, the minimum number of X1 cards wanted to be drawn, must be less than or equal to n.
+                         Set k1Min to 0 if you do not want to set a minimum.
+                         k1Min must be less than or equal to K1Min, K1Max and k1Max.",
             placement = "top", trigger = "hover"),
-  numericInput("k1Max.C", "Nb max. pioché de X1 (k1Max)", 5),
+  numericInput("k1Max.C", "Max. number of X1 drawn (k1Max)", 5),
   bsPopover(id = "k1Max.C", title = "k1Max", 
-            content = "k1Max, le nombre maximum voulu de cartes X1 piochées, doit être inférieur ou égal à n.
-                         Fixer k1Max à n si vous ne souhaitez pas fixer de maximum.
-                         k1Max doit être supérieur ou égal à k1Min et inférieur ou égal à K1Min et K1Max.",
+            content = "k1Max, the maximum number of X1 cards wanted to be drawn, must be less than or equal to n.
+                         Set k1Max to n if you do not want to set a maximum.
+                         k1Max must be greater than or equal to k1Min and less than or equal to K1Min and K1Max.",
             placement = "top", trigger = "hover"),
-  actionButton("calc.C", "Calculer")
-  )
+  actionButton("calc.C", "Calculate")
+)
 
 Page_C_MainPanel = mainPanel(
   lapply(1:nbMulligansC, function(i) {
     plotlyOutput(paste("plotResultat.C", i, sep = "_"))
   })
 )
-

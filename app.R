@@ -9,16 +9,16 @@ for (i in 1:length(UIFilesToSource)){
   source(paste(scriptDir,UIDir,UIFilesToSource[i],sep="/"))
 }
 
-# Définition de l'interface utilisateur
-ui <- navbarPage("Mulligan Hypergéométrique Multivarié",
+# Definition of the user interface
+ui <- navbarPage("Multivariate Hypergeometric Mulligan",
                  theme = shinytheme("cerulean"),
-                 tabPanel("Probas de votre deck", 
+                 tabPanel("Probabilities of your deck", 
                           Page_A_SidebarPanel, 
                           Page_A_MainPanel),
-                 tabPanel("Tableau pour 2 variables", 
+                 tabPanel("Table for 2 variables", 
                           Page_B_SidebarPanel, 
                           Page_B_MainPanel),
-                 tabPanel("Graphique pour 1 variable", 
+                 tabPanel("Graph for 1 variable", 
                           Page_C_SidebarPanel, 
                           Page_C_MainPanel)
 )
@@ -27,7 +27,7 @@ for (i in 1:length(ServerFilesToSource)){
   source(paste(scriptDir,ServerDir,ServerFilesToSource[i],sep="/"))
 }
 
-# Définition du serveur
+# Definition of the server
 server <- function(input, output) {
   observeEvent(input$calc.A, {
     
@@ -57,7 +57,7 @@ server <- function(input, output) {
       
     }else{
       error.B = data.frame(error.B)
-      names(error.B) = "Erreur(s) :"
+      names(error.B) = "Error(s) :"
       output$tableResultat.B_1 = 
         renderTable(error.B, rownames = T, colnames = T)
     }
@@ -82,5 +82,5 @@ server <- function(input, output) {
   })
 }
 
-# Exécution de l'application
+# Execution of the application
 shinyApp(ui = ui, server = server)

@@ -5,75 +5,75 @@ Page_A_CatchParameterErrors = function(input){
   
   if(input$n.A > input$N.A){
     messageErreur.A <- 
-      paste(messageErreur.A,"<b>Erreur</b> : Le nombre de cartes à piocher n est 
-            supérieur au nombre de cartes du deck N.", sep = "<br>")
+      paste(messageErreur.A,"<b>Error</b> : The number of cards to draw n is 
+            greater than the number of cards in the deck N.", sep = "<br>")
   }
   if (input$K1.A + input$K2.A + input$K3.A  + input$K4.A  > input$N.A) {
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le total de cartes de chaque catégorie est 
-            supérieur au nombre de cartes du deck N.", sep = "<br>")
+      <b>Error</b> : The total number of cards of each category is 
+            greater than the number of cards in the deck N.", sep = "<br>")
   }
   if(input$k1Min.A + input$k2Min.A + input$k3Min.A + input$k4Min.A > input$n.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre total de cartes à piocher est 
-            supérieur au nombre total de cartes à piocher n.", sep = "<br>")
+      <b>Error</b> : The total number of cards to draw is 
+            greater than the total number of cards to draw n.", sep = "<br>")
   }
   if(input$k1Min.A > input$k1Max.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre minimum de cartes X1 à piocher 
-            (k1Min) est supérieur au nombre maximum de cartes X1 à piocher 
+      <b>Error</b> : The minimum number of X1 cards to draw 
+            (k1Min) is greater than the maximum number of X1 cards to draw 
             (k1Max).", sep = "<br>")
   }
   if(input$k2Min.A > input$k2Max.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre minimum de cartes X2 à piocher 
-            (k2Min) est supérieur au nombre maximum de cartes X2 à piocher 
+      <b>Error</b> : The minimum number of X2 cards to draw 
+            (k2Min) is greater than the maximum number of X2 cards to draw 
             (k2Max).", sep = "<br>")
   }
   if(input$k3Min.A > input$k3Max.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre minimum de cartes X3 à piocher 
-            (k3Min) est supérieur au nombre maximum de cartes X3 à piocher 
+      <b>Error</b> : The minimum number of X3 cards to draw 
+            (k3Min) is greater than the maximum number of X3 cards to draw 
             (k3Max).", sep = "<br>")
   }
   if(input$k4Min.A > input$k4Max.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre minimum de cartes X4 à piocher 
-            (k4Min) est supérieur au nombre maximum de cartes X4 à piocher 
+      <b>Error</b> : The minimum number of X4 cards to draw 
+            (k4Min) is greater than the maximum number of X4 cards to draw 
             (k4Max).", sep = "<br>")
   }
   if(input$k1Max.A > input$K1.A){
     messageErreur.A <- 
       paste(messageErreur.A,
-      "<b>Erreur</b> : Le nombre maximum de cartes X1 à piocher 
-            (k1Max) est supérieur au nombre de cartes X1 à dans le deck (K1).", 
+            "<b>Error</b> : The maximum number of X1 cards to draw 
+            (k1Max) is greater than the number of X1 cards in the deck (K1).", 
             sep = "<br>")
   }
   if(input$k2Max.A > input$K2.A){
     messageErreur.A <- 
       paste(messageErreur.A,
-      "<b>Erreur</b> : Le nombre maximum de cartes X2 à piocher 
-            (k2Max) est supérieur au nombre de cartes X2 dans le deck (K2).", 
+            "<b>Error</b> : The maximum number of X2 cards to draw 
+            (k2Max) is greater than the number of X2 cards in the deck (K2).", 
             sep = "<br>")
   }
   if(input$k3Max.A > input$K3.A){
     messageErreur.A <- 
       paste(messageErreur.A,
-      "<b>Erreur</b> : Le nombre maximum de cartes X3 à piocher 
-            (k3Max) est supérieur au nombre de cartes X3 dans le deck (K3).", 
+            "<b>Error</b> : The maximum number of X3 cards to draw 
+            (k3Max) is greater than the number of X3 cards in the deck (K3).", 
             sep = "<br>")
   }
   if(input$k4Max.A > input$K4.A){
     messageErreur.A <- 
       paste(messageErreur.A,"
-      <b>Erreur</b> : Le nombre maximum de cartes X4 à piocher 
-            (k4Max) est supérieur au nombre de cartes X4 dans le deck (K4).", 
+      <b>Error</b> : The maximum number of X4 cards to draw 
+            (k4Max) is greater than the number of X4 cards in the deck (K4).", 
             sep = "<br>")
   }
   print("End Page_A_CatchParameterErrors()")
@@ -83,58 +83,58 @@ Page_A_CatchParameterErrors = function(input){
 Page_A_Output = function(input){
   
   print("Start Page_A_Output()")
-  # Calcul de la probabilité totale
+  # Calculation of the total probability
   prob = multivariateHypergeometricComputation4params(
     input$N.A, 
     input$n.A, 
     c(input$K1.A, input$K2.A, input$K3.A, input$K4.A),
     c(input$k1Min.A, input$k2Min.A, input$k3Min.A, input$k4Min.A),
     c(input$k1Max.A, input$k2Max.A, input$k3Max.A, input$k4Max.A))
-
-  texteLabel = paste0("Nous piochons ",input$n.A," cartes d'un deck de ",
-                      input$N.A," cartes.<br>",
-                      "<br>Nous cherchons la probabilité d'avoir les cartes 
-                      suivantes en main :<br>")
+  
+  texteLabel = paste0("We draw ",input$n.A," cards from a deck of ",
+                      input$N.A," cards.<br>",
+                      "<br>We are looking for the probability of having the 
+                      following cards in hand :<br>")
   
   if(input$K1.A > 0){
     if(input$k1Min.A == input$k1Max.A){
-      texteLabel = paste(texteLabel, "- Exactement<b>",input$k1Min.A,
+      texteLabel = paste(texteLabel, "- Exactly<b>",input$k1Min.A,
                          input$labelX1.A,"</b><br>")
     }else{
-      texteLabel = paste(texteLabel, "- Entre<b>",input$k1Min.A,"et",
-                         input$k1Max.A,input$labelX1.A,"</b>inclus<br>")
+      texteLabel = paste(texteLabel, "- Between<b>",input$k1Min.A,"and",
+                         input$k1Max.A,input$labelX1.A,"</b>included<br>")
     }
   }
   if(input$K2.A > 0){
     if(input$k2Min.A == input$k2Max.A){
-      texteLabel = paste(texteLabel, "- Exactement<b>",input$k2Min.A,
+      texteLabel = paste(texteLabel, "- Exactly<b>",input$k2Min.A,
                          input$labelX2.A,"</b><br>")
     }else{
-      texteLabel = paste(texteLabel, "- Entre<b>",input$k2Min.A,"et",
-                         input$k2Max.A,input$labelX2.A,"</b>inclus<br>")
+      texteLabel = paste(texteLabel, "- Between<b>",input$k2Min.A,"and",
+                         input$k2Max.A,input$labelX2.A,"</b>included<br>")
     }
   }
   if(input$K3.A > 0){
     if(input$k3Min.A == input$k3Max.A){
-      texteLabel = paste(texteLabel, "- Exactement<b>",input$k3Min.A,
+      texteLabel = paste(texteLabel, "- Exactly<b>",input$k3Min.A,
                          input$labelX3.A,"</b><br>")
     }else{
-      texteLabel = paste(texteLabel, "- Entre<b>",input$k3Min.A,"et",
-                         input$k3Max.A,input$labelX3.A,"</b>inclus<br>")
+      texteLabel = paste(texteLabel, "- Between<b>",input$k3Min.A,"and",
+                         input$k3Max.A,input$labelX3.A,"</b>inclusive<br>")
     }
   }
   if(input$K4.A > 0){
     if(input$k4Min.A == input$k4Max.A){
-      texteLabel = paste(texteLabel, "- Exactement<b>",input$k4Min.A,
+      texteLabel = paste(texteLabel, "- Exactly<b>",input$k4Min.A,
                          input$labelX4.A,"</b><br>")
     }else{
-      texteLabel = paste(texteLabel, "- Entre<b>",input$k4Min.A,"et",
-                         input$k4Max.A,input$labelX4.A,"</b>inclus<br>")
+      texteLabel = paste(texteLabel, "- Between<b>",input$k4Min.A,"and",
+                         input$k4Max.A,input$labelX4.A,"</b>inclusive<br>")
     }
   }
   
-  # Calcul de la probabilité conditionnelle de chaque mulligan dépendant du 
-  # précéden - 4 pioches avec remise
+  # Calculation of the conditional probability of each mulligan depending on 
+  # the previous one - 4 draws with replacement
   nbMulligans = 4
   probs = c(prob)
   for(mull in 2:nbMulligans){
@@ -142,13 +142,13 @@ Page_A_Output = function(input){
                 probs[length(probs)] * (1 - probs[length(probs)]))
   }
   
-  # Affichage des résultats du mulligan
-  texteLabel = paste0(texteLabel,"<br>La probabilité lors du 1er mulligan 
-                      d'avoir les cartes voulues en main est : <b>",
+  # Display of mulligan results
+  texteLabel = paste0(texteLabel,"<br>The probability during the 1st mulligan 
+                      of having the wanted cards in hand is : <b>",
                       round(100 * probs[1], digits = 2),"%</b>.<br>")
   for (mull in 2:nbMulligans){
-    newRow = paste0("La probabilité lors du ", mull, "e mulligan d'avoir les 
-                    cartes voulues en main est : <b>",
+    newRow = paste0("The probability during the ", mull, "th mulligan of having 
+                    the wanted cards in hand is : <b>",
                     round(100 * probs[mull], digits = 2),"%</b>.<br>")
     texteLabel = paste(texteLabel, newRow)
   }
